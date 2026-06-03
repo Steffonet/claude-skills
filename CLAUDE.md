@@ -1,5 +1,75 @@
 # CLAUDE.md
 
+<!-- ═══════════════════════════════════════════════════════════
+     FORK OWNER NOTES — Steffonet (Stan Varashilov)
+     Read this section first. Upstream docs follow below.
+     ══════════════════════════════════════════════════════════ -->
+
+## This Fork — What's Different
+
+**Fork:** Steffonet/claude-skills (Stan Varashilov, San Francisco)
+**Upstream:** alirezarezvani/claude-skills — sync via `.github/workflows/sync-upstream.yml` every Monday 6am
+
+This fork extends upstream with skills for **local service businesses** (appliance repair, HVAC, plumbing, cleaning). These skills don't exist in upstream.
+
+### Custom Skills Added (all in `marketing-skill/skills/`)
+
+| Skill | What it does |
+|---|---|
+| `local-seo-manager` | GBP audit, service area pages, NAP consistency, LocalBusiness schema |
+| `wordpress-site-manager` | WP-CLI health check, plugin audit, performance, security hardening |
+| `gbp-content-creator` | Weekly GBP posts (4-topic rotation), photo captions, Q&A seeds, seasonal promos |
+
+Each skill follows the standard pattern: `SKILL.md` + `scripts/` + `references/`.
+
+### Git Workflow (this fork)
+
+Stan's fork uses **direct push to main** — no branch protection, no PR process.
+
+```bash
+# Standard workflow
+git add .
+git commit -m "feat(marketing): ..."
+git push origin main
+```
+
+The upstream branch protection rules in the docs below do NOT apply to this fork.
+
+### SSA Project Shortcuts
+
+Stan's main WordPress site (`smartsolutionappliances.com`) is the primary test case for the local-business skills.
+
+```bash
+# SSH
+ssh -p 65002 u167650519@195.35.10.12
+
+# WP-CLI (on server)
+wp --path=/home/u167650519/domains/smartsolutionappliances.com/public_html --allow-root
+
+# Run audit script (generate with wp_audit_runner.py)
+python3 marketing-skill/skills/wordpress-site-manager/scripts/wp_audit_runner.py
+```
+
+### Personal Project Files
+
+| Path | Purpose |
+|---|---|
+| `C:\!WORKFOLDERSTAN\CLAUDE PROJECTS ALL\1CLAUDEPROJECT\IMPROVEMENTS.md` | Roadmap and task log for this fork |
+| `C:\Users\Stant\OneDrive\Documents\Claude\Scheduled\gmb-weekly-post\SKILL.md` | SSA-specific GBP post automation (Postiz) |
+| `C:\NEW PPROJECT SSA\` | Screenshots, exports, reference docs for SSA project |
+
+### Upstream Sync Notes
+
+- Sync action: `.github/workflows/sync-upstream.yml`
+- If upstream adds a skill that conflicts with a custom skill, resolve manually before next sync
+- `actions/checkout@v4` → update to `v5` before September 2026 (Node.js 20 deprecation warning)
+
+---
+
+<!-- ═══════════════════════════════════════════════════════════
+     UPSTREAM DOCUMENTATION (alirezarezvani/claude-skills)
+     ══════════════════════════════════════════════════════════ -->
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Purpose
